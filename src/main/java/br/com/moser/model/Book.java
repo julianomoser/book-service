@@ -1,5 +1,6 @@
 package br.com.moser.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity(name = "book")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Book implements Serializable {
 
     private static final long serialVersionUID = 1;
