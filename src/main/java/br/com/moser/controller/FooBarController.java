@@ -1,5 +1,6 @@
 package br.com.moser.controller;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,8 @@ public class FooBarController {
 
 
     @GetMapping("/foo-bar")
-    @Retry(name = "foo-bar", fallbackMethod = "fallbackMethod")
+//    @Retry(name = "foo-bar", fallbackMethod = "fallbackMethod")
+    @CircuitBreaker(name = "default", fallbackMethod = "fallbackMethod")
     public String fooBar() {
         log.info("Request to Foo-Bar is Received!");
         var response = new RestTemplate()
